@@ -20,14 +20,11 @@ return new class extends Migration
             $table->text('password'); //encrypted password
             $table->string('url')->nullable();
             $table->text('notes')->nullable();
-            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('category_id')->nullable();
 
             $table->boolean('favorite')->default(false);
-            $table->timestamps('last_used_at')->nullable();
-
+            $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
-
-            
         });
     }
 
