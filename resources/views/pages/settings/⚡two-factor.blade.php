@@ -184,8 +184,25 @@ new class extends Component {
 
     <x-pages::settings.layout
         :heading="__('Two Factor Authentication')"
-        :subheading="__('Manage your two-factor authentication settings')"
+        :subheading="__('Add an extra layer of security to your account')"
     >
+        <div class="mb-6 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 p-4">
+            <div class="flex items-start gap-3">
+                <flux:icon.shield-check variant="outline" class="size-5 text-zinc-500 dark:text-zinc-400 shrink-0 mt-0.5" />
+                <div class="space-y-2">
+                    <flux:text class="font-medium text-zinc-900 dark:text-white">
+                        {{ __('Why enable two-factor authentication?') }}
+                    </flux:text>
+                    <flux:text variant="subtle" class="text-sm leading-relaxed">
+                        {{ __('Two-factor authentication (2FA) adds a critical second layer of protection. Even if your password is compromised through a data breach or phishing attack, an attacker cannot access your vault without the verification code from your authenticator app.') }}
+                    </flux:text>
+                    <flux:text variant="subtle" class="text-sm leading-relaxed">
+                        {{ __('For a password manager, this is especially important — your vault holds the keys to all your other accounts. Enabling 2FA ensures that only you can unlock it.') }}
+                    </flux:text>
+                </div>
+            </div>
+        </div>
+
         <div class="flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
             @if ($twoFactorEnabled)
                 <div class="space-y-4">

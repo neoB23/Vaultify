@@ -45,14 +45,43 @@
             <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item 
-                    icon="cog-6-tooth" 
-                    :href="route('profile.edit')" 
+                <flux:sidebar.item
+                    icon="cog-6-tooth"
+                    :href="route('profile.edit')"
                     wire:navigate
                 >
                     {{ __('Settings') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
+
+            {{-- Dark mode toggle --}}
+            <div
+                class="px-3 pb-2"
+                x-data="{
+                    cycle() {
+                        const modes = ['light', 'dark', 'system'];
+                        const i = modes.indexOf($flux.appearance);
+                        $flux.appearance = modes[(i + 1) % modes.length];
+                    }
+                }"
+            >
+                <button
+                    type="button"
+                    @click="cycle()"
+                    class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-zinc-500 hover:bg-zinc-800/5 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-white/7 dark:hover:text-white transition-colors"
+                >
+                    <template x-if="$flux.appearance === 'light'">
+                        <flux:icon.sun variant="outline" class="size-5" />
+                    </template>
+                    <template x-if="$flux.appearance === 'dark'">
+                        <flux:icon.moon variant="outline" class="size-5" />
+                    </template>
+                    <template x-if="$flux.appearance === 'system'">
+                        <flux:icon.computer-desktop variant="outline" class="size-5" />
+                    </template>
+                    <span x-text="$flux.appearance === 'light' ? '{{ __('Light') }}' : ($flux.appearance === 'dark' ? '{{ __('Dark') }}' : '{{ __('System') }}')"></span>
+                </button>
+            </div>
 
             <div class="p-4 border-t border-zinc-200/70 dark:border-zinc-800">
                 <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
@@ -80,6 +109,34 @@
                     <flux:menu.item :href="route('profile.edit')" icon="cog-6-tooth" wire:navigate>
                         {{ __('Settings') }}
                     </flux:menu.item>
+                    {{-- Dark mode toggle --}}
+                    <div
+                        class="px-2 py-1"
+                        x-data="{
+                            cycle() {
+                                const modes = ['light', 'dark', 'system'];
+                                const i = modes.indexOf($flux.appearance);
+                                $flux.appearance = modes[(i + 1) % modes.length];
+                            }
+                        }"
+                    >
+                        <button
+                            type="button"
+                            @click="cycle()"
+                            class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors"
+                        >
+                            <template x-if="$flux.appearance === 'light'">
+                                <flux:icon.sun variant="outline" class="size-4" />
+                            </template>
+                            <template x-if="$flux.appearance === 'dark'">
+                                <flux:icon.moon variant="outline" class="size-4" />
+                            </template>
+                            <template x-if="$flux.appearance === 'system'">
+                                <flux:icon.computer-desktop variant="outline" class="size-4" />
+                            </template>
+                            <span x-text="$flux.appearance === 'light' ? '{{ __('Light') }}' : ($flux.appearance === 'dark' ? '{{ __('Dark') }}' : '{{ __('System') }}')"></span>
+                        </button>
+                    </div>
                     <flux:menu.separator />
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
