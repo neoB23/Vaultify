@@ -16,7 +16,7 @@
                 :placeholder="__('you@example.com')"
             />
 
-            <flux:button variant="primary" type="submit" class="w-full" data-test="email-password-reset-link-button">
+            <flux:button variant="primary" type="submit" class="w-full cursor-pointer" data-test="email-password-reset-link-button">
                 {{ __('Send reset link') }}
             </flux:button>
         </form>

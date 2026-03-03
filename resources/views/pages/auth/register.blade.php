@@ -1,6 +1,6 @@
 <x-layouts::auth>
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Create your account')" :description="__('Get started with your secure password vault')" />
+        <x-auth-header :title="__('Create your account')" :description="__('Start securing your passwords with Vaultify')" />
 
         <x-auth-session-status class="text-center" :status="session('status')" />
 
@@ -48,7 +48,7 @@
                 viewable
             />
 
-            <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">
+            <flux:button type="submit" variant="primary" class="w-full cursor-pointer" data-test="register-user-button">
                 {{ __('Create account') }}
             </flux:button>
         </form>
