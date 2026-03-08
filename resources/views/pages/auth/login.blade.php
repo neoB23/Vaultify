@@ -1,6 +1,6 @@
 <x-layouts::auth>
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Welcome back')" :description="__('Sign in to your account to continue')" />
+        <x-auth-header :title="__('Welcome back')" :description="__('Sign in to your vault')" />
 
         <x-auth-session-status class="text-center" :status="session('status')" />
 
@@ -38,7 +38,7 @@
 
             <flux:checkbox name="remember" :label="__('Remember me')" :checked="old('remember')" />
 
-            <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
+            <flux:button variant="primary" type="submit" class="w-full cursor-pointer" data-test="login-button">
                 {{ __('Sign in') }}
             </flux:button>
         </form>
